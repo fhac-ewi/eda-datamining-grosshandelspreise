@@ -3,13 +3,20 @@
 \documentclass[12pt]{article}
 \author{Paul Krüger}
 
-\newcommand{\modulname}{Beispielmodulname}
-\newcommand{\semester}{SS 2021}
-
 \include{config}
+\addbibresource{quellen.bib}
 
 \begin{document}
   \include{titlepage}
   \newpage
-  \include{Zusammenfassung}
+  \include{01_Fragestellung}
+  \include{02_Untersuchungsobjekte}
+  \include{03_Datenanalyse}
+  \include{04_Modellauswahl}
+
+  
+  \clearpage
+  \appendix
+  \section{Quellenverzeichnis}
+  \printbibliography[heading=none]
 \end{document}

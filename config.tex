@@ -17,13 +17,41 @@
 % Schriftart
 \usepackage{charter}
 
+% Verlinkungen
+\usepackage[
+  breaklinks=false,
+  linktocpage=false,
+  linkcolor=black,
+  citecolor=magenta,
+  colorlinks=true,
+  urlcolor=black
+  ]{hyperref}
+
+\usepackage[german]{fancyref}
+
+% Quellen
+\usepackage[
+  backend   = biber,
+  style     = numeric,
+  sorting   = none,
+  backref   = true
+]{biblatex}
+\DefineBibliographyStrings{german}{
+  backrefpage = {referenziert auf Seite},
+  backrefpages = {referenziert auf den Seiten},
+  urlseen = {abgerufen am}
+}
+\DeclareFieldFormat{urldate}{\bibstring{urlseen}\space#1}
+\setcounter{biburllcpenalty}{7000}
+\setcounter{biburlucpenalty}{8000}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % Style
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpagestyle{ruled}
-{\sethead{\modulname}{- \thepage\space -}{Zusammenfassung}\headrule}
+{\sethead{EDA - Datamining SS2021}{- \thepage\space -}{Seminararbeit Gruppe 1}\headrule}
 \pagestyle{ruled}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -31,11 +59,6 @@
 % Befehle
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newcommand{\vorlesung}[2]{
-  \section{#1}
-  {\small \textit{Vorlesung vom #2.}}\\[0.4cm]
-}
-
 \newcommand{\image}[2]{
   \begin{figure}[!htp]
     \centering
