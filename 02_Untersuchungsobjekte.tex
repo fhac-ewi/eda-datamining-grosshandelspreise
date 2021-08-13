@@ -5,11 +5,30 @@
 -	Ableitung der relevanten Zeitreihen
 Datenquelle: \url{https://www.smard.de/home/downloadcenter/download-marktdaten#!?downloadAttributes=%7B%22selectedCategory%22:2,%22selectedSubCategory%22:5,%22selectedRegion%22:%22DE-LU%22,%22from%22:1618869600000,%22to%22:1619819999999,%22selectedFileType%22:%22XLS%22%7D}
 
+\subsection{Beschaffung der Rohdaten}
+Für die Auswahl der Untersuchungsobjekte wurden diverse Daten von der Webseite SMARD \todo{Link} heruntergeladen. Diese Webseite wird von der Bundesnetzagentur betrieben und stellt verschiedenste Strommarktdaten gemäß § 111d EnWG \todo{https://www.gesetze-im-internet.de/enwg_2005/__111d.html} der Öffentlichkeit zur kostenfreien Nutzung zur Verfügung.
 
-Für die Auswahl der Untersuchungsobjekte wurden Daten von SMARD heruntergeladen. Die Seite stellt viele Zeitreihen zur Verfügung.
-Die folgende Abbildung soll verdeutlichen, zu welchem Zeitpunkt die Daten vorliegen und inwieweit diese für unsere Analyse verwendet werden können.
+\todo{Auflisten, welche Zeitreihen verwendet wurden und wieso und Auflösung}
+
+Als Untersuchungszeitraum wurde der 1. Januar 2018 bis 31. Dezember 2020 festgelegt. Alle Daten wurden, sofern diese verfügbar waren, für diesen Zeitraum heruntergeladen.
+
+Für die Vorhersage des Großhandelspreises können nur Daten verwendet werden, welche zum Zeitpunkt der Vorhersage bereits vorliegen. Es kann beispielsweise nicht die Menge der realisierten Erzeugung zum Liefertermin 31. Januar 2019 12:00 Uhr für die Vorhersage des Großhandelspreises zu diesem Liefertermin verwendet werden, da der Handel vor dem Liefertermin erfolgt und die realisierte Erzeugung erst nach dem Liefertermin bekannt ist. Die folgende Abbildung soll verdeutlichen, zu welchem Zeitpunkt welche Datenreihen vorliegen und inwieweit diese für unsere Analyse verwendet werden können.
 
 \image{Auswahl_Rohdaten.png}{Zeitreihen und deren Verfügbarkeit von SMARD}
+
+Als weitere Datenquelle wurden die Preise für CO2
+
+\subsection{Datenbereinigung}
+Bei der ersten Sichtung der Rohdaten ist aufgefallen, dass einige Datenreihen lücken- oder fehlerhaft sind. Dies muss bereinigt werden, damit mit den Daten weitergearbeitet werden kann. Zudem müssen alle Daten auf die gleiche Auflösung (Vierlstunden-, Stunden- oder Tageswerte) gebracht werden.
+
+
+Einige Datenreihen, wie zum Beispiel \todo{Beispiel}, werden erst seit dem 1. Oktober 2018 erhoben und fehlen deshalb vor diesem Datum. Auch andere Datenreihen weisen im Jahr 2018 vereinzelte Datenlücken auf, welche mit Ersatzwerten aufgefüllt werden müssten. Ersatzwerte verfälschen das Ergebnis der Analyse, da diese lediglich eine Schätzung sind. Aus diesen Gründen wurde der Untersuchungszeitraum auf den 1. Januar 2019 bis 31. Dezember 2020 angepasst.
+
+TODO
+TODO hour of day als Spalte
+
+\subsection{Datenauswahl}
+
 
 - Zeitraum 2018 - 2020 heruntergeladen
 - Festegestellt, dass 2018 große Datenlücken aufweist (vergl. Matlab)
