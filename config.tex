@@ -4,10 +4,15 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage[ngerman]{babel} % Sprache deutsch
-\usepackage{geometry} % Layout Geometrie
+\usepackage[
+  includeheadfoot,nofoot,
+  % showframe
+  bottom = 2cm, top = 2cm
+]{geometry} % Layout Geometrie
 \usepackage[export]{adjustbox} % loads also graphicx
 \usepackage[section]{placeins} % Floating
 \usepackage{titleps} % Layout
+\usepackage{tabularx} % Tabellen
 
 % Notizen (zum Deaktivieren [disable])
 \usepackage[textwidth=25mm,textsize=footnotesize]{todonotes}
@@ -68,3 +73,4 @@
   \end{figure}
   \FloatBarrier
 } % Beispiel: \image{Funny.PNG}{Dies ist eine Beschreibung}
+

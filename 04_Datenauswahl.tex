@@ -1,0 +1,31 @@
+\section{Datenauswahl und Vorbereitung}
+In diesem Abschnitt werden verschiedene zuvor untersuchte Zeitreihen ausgewählt und für die Modelle vorbereitet. Die ausgewählten Zeitreihen sind die Features, welche in die Modelle hineingegeben werden. Jeder Zeitschritt repräsentiert ein Element des Datensatzes bestehend aus den Features (X) und dem tatsächlichen Großhandelspreis (Target oder y).
+
+\subsection{Auswahl der Zeitreihen}
+\todo{Alle Zeitreihen auflisten, die für die Modelle verwendet wurden + Grund}
+
+Zusätzlich werden zum Vergleich vielversprechende Komponenten der PCA ausgewählt. 
+\todo{Welche genau?} 
+
+\subsection{Erstellung verschiedener Datensätze}
+Nachfolgend werden aus den ausgewählten Zeitreihen unterschiedliche Datensätze erstellt, auf deren Basis Modelle erstellt und analysiert werden können.
+
+\todo{Raw, Normiert, Sequeintiell}
+Die Zeitreihen werden zu einem Datensatz mit der Bezeichnung ``Raw'' zusammengefasst. Dieser beinhaltet die Features und das Target ohne Transformationen. Bei Verwendung in einem Modell kann ein solcher Datensatz   
+
+Analog dazu wird ein Datensatz mit den ausgewählten Komponenten der PCA erstellt. Dieser Datensatz enthält deutlich weniger Features und soll deshalb durch ein Modell mit geringerer Komplexität abgebildet werden können. Eine geringere Modellkomplexität hätte den Vorteil einfacherer Berechnungen und eine geringere Tendenz zu Overfitting. Da dieser Datensatz aus Basis der PCA jedoch ein geringeren Informationsgehalt hat, wird davon ausgegangen, dass dieser kein besseres Ergebnis liefert.
+
+\subsection{Unterteilung der Datensätze}
+Jeder Datensatz muss für den Einsatz im Modell in Trainingsdaten, Validierungsdaten und Testdaten unterteilt werden. 
+
+\textbf{Trainingsdaten} werden verwendet um das Modell anzulernen. Diese Daten werden z.B. bei der linearen Regression verwendet, um die Gerade zu erstellen.
+
+Die \textbf{Validierungsdaten} werden verwendet, um aus mehreren möglichen Modellen ein geeignetes Modell auszuwählen. Die Daten wurden beim Anlernen des Modells nicht verwendet und sind deshalb (für das Modell) völlig unbekannte Daten. Es ist zu erwarten, dass das Bewertungskriterium auf den Validierungsdaten geringfügig schlechter als auf Trainingsdaten ist. Sollte der Unterschied zu groß sein, muss das Modell aufgrund von Overfitting verworfen werden. 
+
+Die \textbf{Testdaten} dienen abschließend zur Bestimmung des erwarteten Fehlers, den das finale Modell, welches zuvor mit den Validierungsdaten ausgewählt wurde, beim späteren Einsatz machen wird. Dieser erwartete Fehler wird als Grundlage für den Vergleich des Benchmarkmodells und der Deep Learning Modelle verwendet.
+
+In unserem Anwendungsfall ist es wichtig, dass der Datensatz \textbf{nicht} sequentiell in Trainings-, Validierungs- und Testdaten unterteilt wird. Da die für den Datensatz verwendeten Daten einen Trend und/oder Saisonalität aufweisen, würde der Datensatz durch eine sequentielle Aufteilung in drei nicht zwangsläufig repräsentative Bereiche aufgeteilt werden. Beispielsweise könnte die Aufteilung eines zweijährigen Zeitraums bedeuten, dass als Trainingsdaten das erste Jahr verwendet wird und Validierungsdaten die erste Hälfte des zweiten Jahres. Die Validierungsdaten hätten deshalb keine Aussagekraft über die zweite Jahreshälfte.
+
+Durch eine zufällige Aufteilung des Datensatzes wird diesem Problem entgegen gewirkt. Die Aussagekraft der Validierungsdaten und Testdaten ist höher und die Gefahr von Overfitting wird minimiert. Zudem wird durch die größere Vielfalt der Trainingsdaten ein allgemeingültigeres Modell erstellt.
+
+Eine weitere Möglichkeit zur Aufteilung des Datensatzes wäre die K-Fache Kreuzvalidierung. Dabei wird das Modell mehrfach trainiert, während jeweils ein anderer Teil der Trainingsdaten als Validierungsdaten vorgehalten werden. Diese Methode eignet sich besonders bei kleinen Datensätzen. In unserem Fall ist der Datensatz vergleichsweise groß, weshalb diese Methode nicht notwendig ist. Hierbei wäre nur eine geringfügige Verbesserung des Outsample Fehlers zu erwarten.

@@ -1,14 +1,36 @@
 \section{Auswahl Untersuchungsobjekte}
--	Ableitung möglicher relevanter Objekte aus technoökonomischen Zusammenhang (Struktur des Energiemarkts, Aufbau Merit Order)
--	Auswahl der Datenquellen und deren Zeitreihen
--	Strukturierung der Daten (was wird in welcher Form dokumentiert (Granularität/Auflösung, Fristigkeit))
--	Ableitung der relevanten Zeitreihen
-Datenquelle: \url{https://www.smard.de/home/downloadcenter/download-marktdaten#!?downloadAttributes=%7B%22selectedCategory%22:2,%22selectedSubCategory%22:5,%22selectedRegion%22:%22DE-LU%22,%22from%22:1618869600000,%22to%22:1619819999999,%22selectedFileType%22:%22XLS%22%7D}
+In diesem Abschnitt werden mögliche relevante Datenreihen unter Berücksichtigung technoökonomischer Zusammenhänge beschafft und strukturiert.
 
 \subsection{Beschaffung der Rohdaten}
-Für die Auswahl der Untersuchungsobjekte wurden diverse Daten von der Webseite SMARD \todo{Link} heruntergeladen. Diese Webseite wird von der Bundesnetzagentur betrieben und stellt verschiedenste Strommarktdaten gemäß § 111d EnWG \todo{\url{https://www.gesetze-im-internet.de/enwg_2005/__111d.html}} der Öffentlichkeit zur kostenfreien Nutzung zur Verfügung.
+Für die Auswahl der Untersuchungsobjekte wurden diverse Daten von der Webseite SMARD\footnote{Strommarktdaten, Stromhandel und Stromerzeugung in Deutschland: \url{https://smard.de}} heruntergeladen. Diese Webseite wird von der Bundesnetzagentur betrieben und stellt verschiedenste Strommarktdaten gemäß § 111d EnWG \todo{\url{https://www.gesetze-im-internet.de/enwg_2005/__111d.html}} der Öffentlichkeit zur kostenfreien Nutzung zur Verfügung.
 
-\todo{Auflisten, welche Zeitreihen verwendet wurden und wieso und Auflösung}
+\begin{table}[h]
+  \centering
+  \begin{tabularx}{\textwidth}{|l|X|c|l|}
+    \hline
+
+    \textbf{Bezeichnung} & \textbf{Beschreibung} & \textbf{Einheit} & \textbf{Auflösung} \\ \hline
+    
+    Großhandelspreise & Preise von verschiedenen Strommarktbörsen innerhalb Europas. & € & Stündlich \\ \hline
+
+    Außenhandel & Gehandelte importierte und exportierte Energiemengen gegenüber angrenzenden Strommärkten. & MWh & Stündlich \\ \hline
+
+    Stromfluss & Physikalischerer Stromfluss importierter und exportierter Energiemengen gegenüber angrenzenden Strommärkten. & MWh & Stündlich \\ \hline
+
+    Prognose Erzeugung & Prognose für Stromerzeugungen für verschiedene Anlagetypen. & MWh & Viertelstündlich \\ \hline
+
+    Prognose Verbrauch & Prognose für den gesamten Stromverbrauch und die Residuallast. & MWh & Viertelstündlich \\ \hline
+
+    Erzeugung & Realisierte Erzeugung je Anlagentyp. & MWh & Viertelstündlich \\ \hline
+
+    Verbrauch & Realisierter Stromverbrauch und Residuallast. & MWh & Viertelstündlich \\ \hline
+
+    Brennstoffkosten & Preise von Gas, Kohle und CO2 für Deutschland. & € & Täglich \\ \hline
+  \end{tabularx}
+  \caption{Verfügbare Datenreihen}
+\end{table}
+
+Aus technoökonomischen Aspekten haben all diese Daten einen Einfluss auf den Großhandelspreis, da diese Zeitreihen Angebot und Nachfrage auf dem deutschen Markt wiederspiegeln. Auf dessen Basis wird mithilfe der Merit Order der deutsche Großhandelspreis gebildet. Die Brennstoffkosten\footnote{Brennstoffkosten aus Ilias übernommen} von Gas, Kohle und CO2 beschreiben Brennstoffkosten und stellen somit teilweise die Erzeugungskosten des Angebots dar.
 
 Als Untersuchungszeitraum wurde der 1. Januar 2018 bis 31. Dezember 2020 festgelegt. Alle Daten wurden, sofern diese verfügbar waren, für diesen Zeitraum heruntergeladen.
 
@@ -16,30 +38,40 @@ Für die Vorhersage des Großhandelspreises können nur Daten verwendet werden, 
 
 \image{Auswahl_Rohdaten.png}{Zeitreihen und deren Verfügbarkeit von SMARD}
 
-Als weitere Datenquelle wurden die Preise für CO2
+Da Brennstoffkosten für Gas, Kohle und CO2 jeweils am Vortag gehandelt werden, stehen diese Analog wie die Prognosen vor dem Handelszeitpunkt zur Verfügung.
 
 \subsection{Datenbereinigung}
-Bei der ersten Sichtung der Rohdaten ist aufgefallen, dass einige Datenreihen lücken- oder fehlerhaft sind. Dies muss bereinigt werden, damit mit den Daten weitergearbeitet werden kann. Zudem müssen alle Daten auf die gleiche Auflösung (Vierlstunden-, Stunden- oder Tageswerte) gebracht werden.
+Bei der ersten Sichtung der Rohdaten ist aufgefallen, dass einige Datenreihen lücken- oder fehlerhaft sind. Dies muss bereinigt werden, damit mit den Daten weitergearbeitet werden kann. Zudem müssen alle Daten auf die gleiche Auflösung (Viertelstunden-, Stunden- oder Tageswerte) gebracht werden.
 
+\subsubsection*{Umgang mit Datenlücken}
+Einige Datenreihen, wie zum Beispiel die Prognosen, werden erst seit dem 1. Oktober 2018 erhoben und fehlen deshalb vor diesem Datum. Auch andere Datenreihen weisen im Jahr 2018 vereinzelte Datenlücken auf, welche mit Ersatzwerten aufgefüllt werden müssten. Ersatzwerte verfälschen das Ergebnis der Analyse, da diese lediglich eine Schätzung sind. Aus diesen Gründen wurde der Untersuchungszeitraum auf den 1. Januar 2019 bis 31. Dezember 2020 angepasst.
 
-Einige Datenreihen, wie zum Beispiel \todo{Beispiel}, werden erst seit dem 1. Oktober 2018 erhoben und fehlen deshalb vor diesem Datum. Auch andere Datenreihen weisen im Jahr 2018 vereinzelte Datenlücken auf, welche mit Ersatzwerten aufgefüllt werden müssten. Ersatzwerte verfälschen das Ergebnis der Analyse, da diese lediglich eine Schätzung sind. Aus diesen Gründen wurde der Untersuchungszeitraum auf den 1. Januar 2019 bis 31. Dezember 2020 angepasst.
+Bei dem prognostizierten Stromverbrauch fehlten einzelne Werte im Untersuchungszeitraum. Diese Lücken wurden durch den Wert des Folgetages (+24 Stunden) aufgefüllt. 
 
-TODO
-TODO hour of day als Spalte
+\subsubsection*{Stündliche Auflösung}
+Die Daten für Prognose und Realisierung der erzeugten und verbrauchten Energiemengen liegen in viertelstündlicher Auflösung vor. Diese Zeitreihen werden zu stündlichen Werten aggregiert. Eine besondere Herausforderung war dabei der Umgang mit der Zeitumstellung. Die von der Webseite SMARD bereitgestellten Zeitangaben sind im deutschen Format, weshalb es doppelte Zeitstempel gibt. Die Daten wurden entsprechend rekonstruiert.
+
+Die Marktpreise für Gas, Kohle und CO2 liegen als Tageswerte vor. Die Preise dieser drei Güter wurden auf alle 24 Stunden des Tages (bzw. mal 23 oder 25 Stunden aufgrund der Zeitumstellung) dupliziert, da diese für den gesamten Liefertag gelten. 
+
+\subsubsection*{Wegfall unplausibler Datenreihen}
+Einige Zeitreihen enthalten viele fehlende oder unplausible Werte. Da diese Lücken nicht rekonstruiert werden können, werden die Zeitreihen nicht verwendet. Dies betrifft beispielsweise den Großhandelspreis von Dänemark, Tschechien und Ungarn. 
+
+\subsubsection*{Zeitumstellung}
+Die Zeitumstellung bleibt in den Zeitreihen enthalten. Dies bedeutet, dass im Frühjahr ein Tag mit nur 23 Stunden existiert und im Herbst ein Tag mit 25 Stunden. Dies wird die Daten bis 7 Tage nach der Zeitumstellung beeinflussen. (Die Leute stehen weiterhin zur gleichen Uhrzeit auf (bzw. stellen sich auf die neue Uhrzeit ein / die Prognosen hingegen von erneuerbaren Energien stellen sich nicht schlagartig um - das ist ein schleichender Prozess übers gesamte Jahr) Aus diesem Grund erfolgt keine Bereinigung/Ersatzwertbildung. Damit würde man meiner Meinung nach das Problem nur schlimmer machen.
 
 \subsection{Datenauswahl}
+Nach der visuellen Analyse und der Bereinigung der Rohdaten wird daraus eine Datenbasis für die weiteren Analysen und Modellierung geschaffen. Aufgrund der Lücken wird nur der Zeitraum 1. Januar 2019 bis 31. Dezember 2020 verwendet.
+
+Unter Berücksichtigung der Verfügbarkeit (vgl. Abschnitt Beschaffung der Rohdaten) werden die Daten jeweils dem zu prognostizierenden Großhandelspreis gegenübergestellt. 
+
+Die nachfolgende Analysen werden losgelöst von Datum und Uhrzeit erfolgen, da diese für das zu erstellende Modell unerheblich sind. Die Daten werden nachfolgend als Daten für Handelszeitschritt t betrachtet. 
+Bei einer nachfolgenden Analyse ist aufgefallen, dass Liefertag und Lieferzeit einen starken Einfluss auf den Großhandelspreis haben. Um dies korrekt abzubilden, müssten für die verschiedenen Kluster eigene Regressionsmodelle erstellt und hinterher zusammengefügt werden. Dies übersteigt jedoch den Arbeitsaufwand für eine Zweiergruppe. Als Kompromiss wurden Informationen über das gehandelte Produkt verwendet und fließen bei den Deep Learning Modellen mit ein.
+
+\todo{Daten in Objekt Basis beschreiben}
 
 
-- Zeitraum 2018 - 2020 heruntergeladen
-- Festegestellt, dass 2018 große Datenlücken aufweist (vergl. Matlab)
-  - Zeitreihen beginnen erst ab 1.10.2018
-  - Zeitreihen sind Lückenhaft
-- Davon abgesehen Datenpunkte zu Schätzen -> Dies würde das Ergebnis nur verschlechtern.
-- Deshalb ZR 1.1.2019 - 31.12.2020 für weitere Analyse verwendet. Hier liegen die Daten halbwegs vollständig vor.
 
-- Probleme mit Zeitumstellung, da hier die lokale Zeit verwendet wird und deshalb Stunden doppelt drinnen sind
-  - Vermeintlich einfaches Zusammenfügen von Viertelstunden Daten zu Stundendaten komplex
-  - Genauso schwierig von Tageweisen Daten auf Stundendaten zu kommen (andernfalls wäre ein REPEAT 24 easy)
-
-Nachdem der ganze *** sortiert ist, können dann verschiedene Datenreihen extrahiert werden, die für die deskriptive Datenanalyse herangezogen werden können. 
-\todo{Datenreihen in Variable Basis beschreiben}
+-	Ableitung möglicher relevanter Objekte aus technoökonomischen Zusammenhang (Struktur des Energiemarkts, Aufbau Merit Order)
+-	Strukturierung der Daten (was wird in welcher Form dokumentiert (Granularität/Auflösung, Fristigkeit))
+-	Ableitung der relevanten Zeitreihen
+Datenquelle: \url{https://www.smard.de/home/downloadcenter/download-marktdaten#!?downloadAttributes=%7B%22selectedCategory%22:2,%22selectedSubCategory%22:5,%22selectedRegion%22:%22DE-LU%22,%22from%22:1618869600000,%22to%22:1619819999999,%22selectedFileType%22:%22XLS%22%7D}
