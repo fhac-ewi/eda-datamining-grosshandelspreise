@@ -64,8 +64,14 @@ Nach der visuellen Analyse und der Bereinigung der Rohdaten wird daraus eine Dat
 
 Unter Berücksichtigung der Verfügbarkeit (vgl. Abschnitt Beschaffung der Rohdaten) werden die Daten jeweils dem zu prognostizierenden Großhandelspreis gegenübergestellt. 
 
-Die nachfolgende Analysen werden losgelöst von Datum und Uhrzeit erfolgen, da diese für das zu erstellende Modell unerheblich sind. Die Daten werden nachfolgend als Daten für Handelszeitschritt t betrachtet. 
-Bei einer nachfolgenden Analyse ist aufgefallen, dass Liefertag und Lieferzeit einen starken Einfluss auf den Großhandelspreis haben. Um dies korrekt abzubilden, müssten für die verschiedenen Kluster eigene Regressionsmodelle erstellt und hinterher zusammengefügt werden. Dies übersteigt jedoch den Arbeitsaufwand für eine Zweiergruppe. Als Kompromiss wurden Informationen über das gehandelte Produkt verwendet und fließen bei den Deep Learning Modellen mit ein.
+Die nachfolgende Analysen werden losgelöst vom Liefertermin (im Bezug auf das Datum) erfolgen, da das Modell die Zusammenhänge und Trends auf Basis der Features und nicht anhand des Liefertags erlernen soll. Ist dies nicht möglich, ist das ein Anzeichen dafür, dass die gewählten Features den Trend im Großhandelspreis nicht vollständig beschreiben können. Aus energiewirtschaftlicher Sicht gibt es keine Begründung, wieso der Strom am 2. Februar teurer als am 2. August sein sollte. Aus energiewirtschaftlicher Sicht sollte dies durch weitere Features wie beispielsweise Außentemperatur, Sonnenauf-/-untergang, Sonnenstunden und Einstrahlungswinkel beschrieben werden. Die Daten werden deshalb nachfolgend losgelöst der Liefertermins als Daten für Handelszeitschritt t betrachtet. (Uns ist bewusst, dass deutlich bessere Ergebnisse unter hinzunahme des Liefermonats, Liefertags und Lieferstunde erzielt werden könnten.)
+
+\image{Einfluss_Zeit.PNG}{Einfluss des Handelszeitpunkts auf den Großhandelspreis}
+
+Der Liefertermin hat natürlich einen großen Einfluss auf den Großhandelspreis. So werden am Großhandelsmarkt die Produkte Peak (8-20 Uhr) und Offpeak (sonst) gehandelt. Die Preise dieser beiden Produkte weisen eine unterschiedliche Verteilung auf. 
+Genauso lassen sich auch unterschiedliche Verteilungen der Preise an Werktagen und Wochenenden feststellen. 
+
+Um dies korrekt in den Modellen abzubilden, müssten separate Modelle erstellt und hinterher zusammengefügt werden. Dies übersteigt meiner Meinung nach aber den Aufwand einer Zweiergruppe, weshalb dies nicht umgesetzt wurde. Jedoch werden diese vier gefundenen Gruppen als Features für die Deep Learning Modelle verwendet. Ob und was die Modelle damit anstellen ist deren Sache.
 
 \todo{Daten in Objekt Basis beschreiben}
 
