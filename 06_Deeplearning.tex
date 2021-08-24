@@ -1,4 +1,18 @@
 \section{Deep-Learning Modelle}
+\todo{Nette Einleitung}
+Bei DeepL Modellen entscheiden viele (voneinander abhängige) Einflussfaktoren über ein gutes oder schlechtes Ergebnis. Die nachfolgend genannten Einflussfaktoren wurden getrennt oder gemeinsam bei der Auswahl des finalen Datensatzes und Modell verwendet. Es handelte sich hierbei um einen iterativen Prozess, sodass nun gewählte Modell dem vermeintlichen Optimum am Nächsten kommt.
+
+\begin{itemize}
+  \item Features (Anzahl, Informationsgehalt)
+  \item Normalisierung
+  \item Aufteilung in Train/Validate/Test
+  \item (Sequenzlänge)
+  \item DeepL Ansatz (KNN, LSTM, CNN)
+  \item Modellarchitektur (Layer)
+  \item Parametrierung (Hidden Units, Dropout Faktor)
+  \item Trainingsparameter (Anzahl Epochen, Optimizer, Lernkurve)
+\end{itemize}
+
 
 \subsection{Auswahl des optimalen Datensatzes}
 \todo{Schrittweise Features hinzugenommen}
@@ -6,6 +20,9 @@
 
 \todo{Verschiedene Normierungen und ausgewählte Features bei LSTM}
 \image{Auswahl_Datensatz.PNG}{RMSE verschiedener Datensätze bei LSTM}
+\todo{MinMax kacke. ZScore/Mean verwendet}
+\todo{Shuffeld besser, da breiterer Zeitraum abgedeckt wird.}
+\todo{Aufteilung der Trainingsdaten verifiziert}
 
 \todo{Sequenzlänge beschreiben}
 \image{Auswahl_Sequenzlaenge.PNG}{Auswahl Sequenzlänge bei LSTM}
