@@ -2,4 +2,13 @@
 
 \subsection{Vergleich Benchmark und Deep-Learning Modelle}
 
+\subsection{Hinzunahme des konkreten Handelszeitpunkts}
+In einem weiteren Versuch wurden Monat, Kalenderwoche, Tag im laufenden Jahr, Stunde und vergangene Stunden seit erstem Handelszeitpunkt als Features hinzugefügt.
+Durch Angabe dieser Information soll das Modell einfacherer Trends abbilden können.
+
+Das Hinzufügen dieser Features brachte für das Benchmarkmodell eine Verbesserung des RMSE von 0.03 (3 Cent). 
+Bei dem klassischen Feed Forward Modell brachte es \todo{Wert} Verbesserung. Bei einem LSTM konnte keine Verbesserung festgestellt werden.
+
+Daraus lässt sich schlussfolgern, dass das LSTM bereits diese Zusammenhänge/den Trend anhand der anderen Features erlernen konnte und somit später in der Praxis auf die Veränderung dieser Features aufbauen wird und den Trend nicht einfach stumpf an der fortschreitenden Zeit festmacht.
+
 \subsection{Schlussfolgerungen}
